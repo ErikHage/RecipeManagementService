@@ -25,12 +25,12 @@ public class ServiceInfoController {
     @Autowired
     private PropertiesService propertiesService;
 
-    @RequestMapping(value= Routes.SERVICE_INFO,
+    @RequestMapping(value= Routes.API_SERVICE_INFO,
             produces= Constants.APPLICATION_JSON,
             method= RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public ServiceInfo getServiceInfo() {
-        logger.debug("hitting endpoint: " + Routes.SERVICE_INFO);
+        logger.debug("hitting endpoint: " + Routes.API_SERVICE_INFO);
         return propertiesService.getServiceInfo();
     }
 

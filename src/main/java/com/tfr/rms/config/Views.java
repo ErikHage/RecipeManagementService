@@ -5,7 +5,11 @@ package com.tfr.rms.config;
  */
 public interface Views {
 
-    String INDEX = "index.html";
-    String API = "rms_api.html";
+    String INDEX = "index";
+    String API = "rms_api";
+    String ADD_RECIPE = "addRecipe";
+    String FIND_RECIPE = "findRecipe";
+    String UPDATE_RECIPE = "updateRecipe";
 
 }
+

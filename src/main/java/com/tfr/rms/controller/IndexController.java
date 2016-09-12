@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
+ *
  * Created by Erik on 9/1/2016.
  */
 
@@ -25,10 +26,10 @@ public class IndexController {
         return Views.INDEX;
     }
 
-    @RequestMapping(value= Routes.API)
+    @RequestMapping(value= Routes.RECIPE_API)
     @ResponseStatus(HttpStatus.OK)
     public String api() {
-        logger.debug("hitting endpoint: " + Routes.API);
+        logger.debug("hitting endpoint: " + Routes.RECIPE_API);
         return Views.API;
     }
 

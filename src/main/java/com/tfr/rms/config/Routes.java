@@ -1,20 +1,27 @@
 package com.tfr.rms.config;
 
 /**
+ *
  * Created by Erik on 8/31/2016.
  */
 public interface Routes {
 
+    /* Views */
     String INDEX = "/";
-    String API = "/api";
-    String SERVICE_INFO = "/api/service/info";
+    String RECIPE_API = "/api";
+    String INPUT_RECIPE = "/input";
+    String FIND_RECIPE = "/find";
+    String UPDATE_RECIPE = "/update";
 
-    String RECIPE_CREATE = "/api/recipe/create";
+    /* Rest API */
+    String API_SERVICE_INFO = "/api/service/info";
 
-    String RECIPE_READ_BY_NAME = "/api/recipe/find/name/{recipeName}";
-    String RECIPE_READ_ALL = "/api/recipe/find/all";
+    String API_RECIPE_CREATE = "/api/recipe/create";
+    String API_RECIPE_UPDATE = "/api/recipe/update";
+    String API_RECIPE_DELETE = "/api/recipe/delete";
 
-    String RECIPE_UPDATE = "/api/recipe/update";
-    String RECIPE_DELETE = "/api/recipe/delete";
+    String API_RECIPE_FIND_BY_NAME = "/api/recipe/find/name/{recipeName}";
+    String API_RECIPE_FIND_ALL = "/api/recipe/find/all";
+
 
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+    <nav class="navbar navbar-default" th:fragment="navbar">
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"
+                   th:href="@{${T(com.tfr.rms.config.Routes).INDEX}}">RMS</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li id="li-input">
+                    <a href="/input" th:href="@{${T(com.tfr.rms.config.Routes).INPUT_RECIPE}}">Add Recipe</a>
+                </li>
+                <li id="li-find">
+                    <a href="/find" th:href="@{${T(com.tfr.rms.config.Routes).FIND_RECIPE}}">Find Recipe</a>
+                </li>
+                <li id="li-update">
+                    <a href="/update" th:href="@{${T(com.tfr.rms.config.Routes).UPDATE_RECIPE}}">Edit Recipe</a>
+                </li>
+            </ul>
+        </div>
+        <script>
+            /* Set active tab on nav bar */
+            var url = window.location.href;
+            var endpoint = url.substring(url.lastIndexOf('/') + 1, url.length);
+            if (endpoint.length > 0) {
+                $('#li-'+endpoint).addClass('active');
+            }
+        </script>
+
+    </nav>
+
+</body>
+</html>

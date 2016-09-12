@@ -1,77 +1,42 @@
 package com.tfr.rms.controller;
 
-import com.tfr.rms.config.Constants;
 import com.tfr.rms.config.Routes;
-import com.tfr.rms.model.Recipe;
-import com.tfr.rms.model.ResponseMessage;
-import com.tfr.rms.service.RecipeService;
+import com.tfr.rms.config.Views;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * 
- * Created by Erik on 9/2/2016.
+ *
+ * Created by Erik on 9/11/2016.
  */
 
-@RestController
+@Controller
 public class RecipeController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private RecipeService recipeService;
-
-    @RequestMapping(value = Routes.RECIPE_CREATE,
-                    consumes = Constants.APPLICATION_JSON,
-                    produces = Constants.APPLICATION_JSON,
-                    method = RequestMethod.POST)
+    @RequestMapping(value= Routes.INPUT_RECIPE)
     @ResponseStatus(HttpStatus.OK)
-    public Recipe createRecipe(@RequestBody Recipe recipe) {
-        logger.debug("endpoint: " + Routes.RECIPE_CREATE);
-        return recipeService.insertRecipe(recipe);
+    public String inputRecipe() {
+        logger.debug("hitting endpoint: " + Routes.INPUT_RECIPE);
+        return Views.ADD_RECIPE;
     }
 
-    @RequestMapping(value = Routes.RECIPE_READ_BY_NAME,
-            produces = Constants.APPLICATION_JSON,
-            method = RequestMethod.GET)
+    @RequestMapping(value= Routes.FIND_RECIPE)
     @ResponseStatus(HttpStatus.OK)
-    public List<Recipe> findRecipeByName(@PathVariable String recipeName) {
-        logger.debug("endpoint: " + Routes.RECIPE_READ_BY_NAME.replace("{recipeName}", recipeName));
-        return recipeService.findRecipeByName(recipeName);
+    public String findRecipe() {
+        logger.debug("hitting endpoint: " + Routes.FIND_RECIPE);
+        return Views.FIND_RECIPE;
     }
 
-    @RequestMapping(value = Routes.RECIPE_READ_ALL,
-            produces = Constants.APPLICATION_JSON,
-            method = RequestMethod.GET)
+    @RequestMapping(value= Routes.UPDATE_RECIPE)
     @ResponseStatus(HttpStatus.OK)
-    public List<Recipe> findAllRecipes() {
-        logger.debug("endpoint: " + Routes.RECIPE_READ_ALL);
-        return recipeService.findAll();
+    public String updateRecipe() {
+        logger.debug("hitting endpoint: " + Routes.UPDATE_RECIPE);
+        return Views.UPDATE_RECIPE;
     }
-
-    @RequestMapping(value = Routes.RECIPE_UPDATE,
-            consumes = Constants.APPLICATION_JSON,
-            produces = Constants.APPLICATION_JSON,
-            method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public Recipe updateRecipe(@RequestBody Recipe recipe) {
-        logger.debug("endpoint: " + Routes.RECIPE_UPDATE);
-        return recipeService.updateRecipe(recipe);
-    }
-
-    @RequestMapping(value = Routes.RECIPE_DELETE,
-            consumes = Constants.APPLICATION_JSON,
-            produces = Constants.APPLICATION_JSON,
-            method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseMessage deleteRecipe(@RequestBody Recipe recipe) {
-        logger.debug("endpoint: " + Routes.RECIPE_DELETE);
-        return recipeService.deleteRecipe(recipe);
-    }
-
 }

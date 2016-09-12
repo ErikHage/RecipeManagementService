@@ -32,13 +32,13 @@ import java.util.Collections;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestRecipeController {
+public class TestRecipeRestController {
 
     @Mock
     private RecipeService mockRecipeService;
 
     @InjectMocks
-    private RecipeController controller;
+    private RecipeRestController controller;
 
     private MockMvc mockMvc;
 
@@ -56,7 +56,7 @@ public class TestRecipeController {
 
         when(mockRecipeService.insertRecipe(rec1)).thenReturn(rec1);
 
-        mockMvc.perform(post(Routes.RECIPE_CREATE)
+        mockMvc.perform(post(Routes.API_RECIPE_CREATE)
             .contentType(Constants.APPLICATION_JSON)
             .content(json))
                 .andDo(print())
@@ -76,7 +76,7 @@ public class TestRecipeController {
 
         when(mockRecipeService.findRecipeByName("Test Recipe 1")).thenReturn(Collections.singletonList(rec1));
 
-        mockMvc.perform(get(Routes.RECIPE_READ_BY_NAME.replace("{recipeName}", "Test Recipe 1")))
+        mockMvc.perform(get(Routes.API_RECIPE_FIND_BY_NAME.replace("{recipeName}", "Test Recipe 1")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(Constants.APPLICATION_JSON))
@@ -98,7 +98,7 @@ public class TestRecipeController {
 
         when(mockRecipeService.findAll()).thenReturn(Arrays.asList(rec1, rec2, rec3));
 
-        mockMvc.perform(get(Routes.RECIPE_READ_ALL))
+        mockMvc.perform(get(Routes.API_RECIPE_FIND_ALL))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(Constants.APPLICATION_JSON))
@@ -117,7 +117,7 @@ public class TestRecipeController {
 
         when(mockRecipeService.updateRecipe(rec1)).thenReturn(rec1);
 
-        mockMvc.perform(post(Routes.RECIPE_UPDATE)
+        mockMvc.perform(post(Routes.API_RECIPE_UPDATE)
                 .contentType(Constants.APPLICATION_JSON)
                 .content(json))
                 .andDo(print())
@@ -140,7 +140,7 @@ public class TestRecipeController {
 
         when(mockRecipeService.deleteRecipe(rec1)).thenReturn(expectedReturn);
 
-        mockMvc.perform(post(Routes.RECIPE_DELETE)
+        mockMvc.perform(post(Routes.API_RECIPE_DELETE)
                 .contentType(Constants.APPLICATION_JSON)
                 .content(json))
                 .andDo(print())

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+    <div class="text-center" th:fragment="footer">
+        <hr/>
+        <a href="/api" th:href="@{${T(com.tfr.rms.config.Routes).INDEX}}">Home</a>
+        |
+        <a href="/input" th:href="@{${T(com.tfr.rms.config.Routes).INPUT_RECIPE}}">Add</a>
+        |
+        <a href="/find" th:href="@{${T(com.tfr.rms.config.Routes).FIND_RECIPE}}">Find</a>
+        |
+        <a href="/update" th:href="@{${T(com.tfr.rms.config.Routes).UPDATE_RECIPE}}">Edit</a>
+        |
+        <a href="/api" th:href="@{${T(com.tfr.rms.config.Routes).RECIPE_API}}">API</a>
+        <hr/>
+    </div>
+
+</body>
+</html>
