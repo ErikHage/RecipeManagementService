@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Erik on 9/3/2016.
@@ -22,7 +24,6 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private RecipeRepository recipeRepository;
 
-
     @Override
     public Recipe insertRecipe(Recipe recipe) {
         logger.debug("Saving recipe: " + recipe.toString());
@@ -32,7 +33,15 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public List<Recipe> findRecipeByName(String name) {
+    public Recipe findRecipeById(String id) {
+        logger.debug("Reading recipe by id: " + id);
+        Recipe recipe = recipeRepository.findOne(id);
+        logger.debug("Found recipe: " + recipe.toString());
+        return recipe;
+    }
+
+    @Override
+    public List<Recipe> findRecipesByName(String name) {
         logger.debug("Reading recipe by name: " + name);
         List<Recipe> results = recipeRepository.findByName(name);
         logResultSet(results);
@@ -51,7 +60,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe updateRecipe(Recipe recipe) {
         logger.debug("Updating recipe: " + recipe.toString());
         Recipe recipeOut = recipeRepository.save(recipe);
-        logger.debug("Saved recipe: " + recipeOut.toString());
+        logger.debug("Updated recipe: " + recipeOut.toString());
         return recipeOut;
     }
 
@@ -61,6 +70,16 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.delete(recipe);
         logger.debug("Recipe deleted");
         return new ResponseMessage("Recipe deleted: " + recipe.toString());
+    }
+
+    @Override
+    public Map<String, String> getRecipeNames() {
+        Map<String, String> namesMap = new HashMap<>();
+        List<Recipe> recipes = findAll();
+        recipes.forEach((r) ->
+                namesMap.put(r.getId(),r.getName())
+        );
+        return namesMap;
     }
 
     private void logResultSet(List<Recipe> results) {

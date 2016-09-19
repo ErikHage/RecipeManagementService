@@ -5,10 +5,42 @@ package com.tfr.rms.model;
  */
 public class Ingredient {
 
-    public String name;
-    public String measure;
-    public double amount;
-    public String notes;
+    private String name;
+    private String measure;
+    private double amount;
+    private String notes;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
     @Override
     public String toString() {

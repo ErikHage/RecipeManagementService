@@ -4,6 +4,7 @@ import com.tfr.rms.model.Recipe;
 import com.tfr.rms.model.ResponseMessage;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Erik on 9/2/2016.
@@ -11,9 +12,12 @@ import java.util.List;
 public interface RecipeService {
 
     Recipe insertRecipe(Recipe recipe);
-    List<Recipe> findRecipeByName(String name);
+    Recipe findRecipeById(String id);
+    List<Recipe> findRecipesByName(String name);
     List<Recipe> findAll();
     Recipe updateRecipe(Recipe recipe);
     ResponseMessage deleteRecipe(Recipe recipe);
+
+    Map<String, String> getRecipeNames();
 
 }

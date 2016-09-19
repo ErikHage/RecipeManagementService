@@ -40,9 +40,18 @@ public class RecipeRestController {
             produces = Constants.APPLICATION_JSON,
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<Recipe> findRecipeByName(@PathVariable String recipeName) {
-        logger.debug("endpoint: " + Routes.API_RECIPE_FIND_BY_NAME.replace("{recipeName}", recipeName));
-        return recipeService.findRecipeByName(recipeName);
+    public List<Recipe> findRecipeByName(@PathVariable String name) {
+        logger.debug("endpoint: " + Routes.API_RECIPE_FIND_BY_NAME.replace("{name}", name));
+        return recipeService.findRecipesByName(name);
+    }
+
+    @RequestMapping(value = Routes.API_RECIPE_FIND_BY_ID,
+            produces = Constants.APPLICATION_JSON,
+            method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public Recipe findRecipeById(@PathVariable String id) {
+        logger.debug("endpoint: " + Routes.API_RECIPE_FIND_BY_ID.replace("{id}", id));
+        return recipeService.findRecipeById(id);
     }
 
     @RequestMapping(value = Routes.API_RECIPE_FIND_ALL,

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <div th:replace="fragments/imports :: imports"></div>
+    <div th:replace="fragments/imports :: style-custom"></div>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>RMS - Add Recipe</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div th:replace="fragments/nav :: navbar"></div>
+
+        <div class="row">
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">
+
+                <div class="text-center">
+                    <h2>Add a Recipe</h2>
+                    <p th:text="${statusMessage}"></p>
+                </div>
+
+                <form id="recipeInputForm" role="form" th:object="${recipe}">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div th:if="${recipe.id} != null">
+                                <input type="hidden" id="id" th:field="*{id}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Recipe Name</label>
+                                <input type="text" id="name" th:field="*{name}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Recipe Description</label>
+                                <input type="text" id="description" th:field="*{description}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prepTime">Prep Time (min)</label>
+                                <input type="number" id="prepTime" th:field="*{prepTime}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cookTime">Cook Time (min)</label>
+                                <input type="number" id="cookTime" th:field="*{cookTime}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="yield">Yield (servings)</label>
+                                <input type="number" id="yield" th:field="*{yield}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ingredients">Ingredients</label>
+                                <button id="addIngredientButton" type="submit" formmethod="get" formaction="#" th:formaction="@{${T(com.tfr.rms.config.Routes).INPUT_ADD_ROW}}">+</button>
+                                <div id="ingredients">
+
+                                    <table class="table ingredient-table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="ingredient-number"></th>
+                                                <th class="ingredient-quantity">Qty</th>
+                                                <th class="ingredient-measure">Measure</th>
+                                                <th class="ingredient-name">Name</th>
+                                                <th class="ingredient-notes">Notes</th>
+                                                <th class="ingredient-remove"></th>
+                                            </tr>
+                                            <tr th:each="ingredient,stat : *{ingredients}">
+                                                <td th:text="__${stat.count}__"></td>
+                                                <td><input class="ingredient" type="number" th:field="${recipe.ingredients[__${stat.index}__].amount}"/></td>
+                                                <td><input class="ingredient" type="text" th:field="${recipe.ingredients[__${stat.index}__].measure}"/></td>
+                                                <td><input class="ingredient" type="text" th:field="${recipe.ingredients[__${stat.index}__].name}"/></td>
+                                                <td><input  class="ingredient" type="text" th:field="${recipe.ingredients[__${stat.index}__].notes}"/></td>
+                                                <td><button type="submit" formmethod="post" class="btn btn-danger" formaction="#"
+                                                            th:formaction="@{${T(com.tfr.rms.config.Routes).INPUT_REMOVE_ROW}} + __${stat.index}__">X</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group description-holder">
+                                <label for="directions">Directions</label>
+                                <textarea rows="20" type="text" id="directions" th:field="*{directions}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button th:if="${recipe.id} == null" id="createRecipeButton" type="submit" formmethod="post" class="btn btn-primary" formaction="#" th:formaction="@{${T(com.tfr.rms.config.Routes).INPUT_RECIPE}}">Create</button>
+                        <button th:if="${recipe.id} != null" id="saveRecipeButton" type="submit" formmethod="post" class="btn btn-primary" formaction="#" th:formaction="@{${T(com.tfr.rms.config.Routes).UPDATE_RECIPE}}">Save</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+            <div class="col-md-1"></div>
+
+        </div>
+    </div>
+</body>
+<footer>
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</html>

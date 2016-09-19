@@ -12,30 +12,86 @@ import java.util.List;
 public class Recipe {
 
     @Id
-    public String id;
+    private String id;
 
-    public String name;
-    public String description;
+    private String name;
+    private String description;
 
-    public double prepTime;
-    public double cookTime;
-    public double yield;
+    private double prepTime;
+    private double cookTime;
+    private double yield;
 
-    public List<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
 
-    public String directions;
+    private String directions;
 
     public Recipe() {
 
     }
 
-//    @Override
-//    public String toString() {
-//        return String.format(
-//                "Recipe[id=%s, name='%s', description='%s']",
-//                id, name, description);
-//    }
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(double prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public double getCookTime() {
+        return cookTime;
+    }
+
+    public void setCookTime(double cookTime) {
+        this.cookTime = cookTime;
+    }
+
+    public double getYield() {
+        return yield;
+    }
+
+    public void setYield(double yield) {
+        this.yield = yield;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getDirections() {
+        return directions;
+    }
+
+    public void setDirections(String directions) {
+        this.directions = directions;
+    }
 
     @Override
     public String toString() {

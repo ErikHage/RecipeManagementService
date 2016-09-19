@@ -7,9 +7,9 @@ public interface Views {
 
     String INDEX = "index";
     String API = "rms_api";
-    String ADD_RECIPE = "addRecipe";
+    String EDIT_RECIPE = "editRecipe";
     String FIND_RECIPE = "findRecipe";
-    String UPDATE_RECIPE = "updateRecipe";
+    String VIEW_RECIPE = "viewRecipe";
 
 }
 

@@ -51,7 +51,7 @@ public class TestRecipeRestController {
     @Test
     public void testCreateRecipe_GivenRecipe_ExpectSuccess() throws Exception {
         Recipe rec1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
-        rec1.id = "Test1";
+        rec1.setId("Test1");
         String json = RecipeTestHelper.recipeToJson(rec1);
 
         when(mockRecipeService.insertRecipe(rec1)).thenReturn(rec1);
@@ -70,31 +70,47 @@ public class TestRecipeRestController {
     }
 
     @Test
+    public void testFindRecipeById_GivenId_ExpectRecipe() throws Exception {
+        Recipe rec1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
+        rec1.setId("Test1");
+        when(mockRecipeService.findRecipeById("Test1")).thenReturn(rec1);
+
+        mockMvc.perform(get(Routes.API_RECIPE_FIND_BY_ID.replace("{id}", "Test1")))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(Constants.APPLICATION_JSON))
+                .andExpect(jsonPath("name", is("Test Recipe 1"))
+                );
+
+        verify(mockRecipeService, times(1)).findRecipeById("Test1");
+        verifyNoMoreInteractions(mockRecipeService);
+    }
+
+    @Test
     public void testFindRecipeByName_GivenName_ExpectRecipe() throws Exception {
         Recipe rec1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
-        rec1.id = "Test1";
+        rec1.setId("Test1");
+        when(mockRecipeService.findRecipesByName("Test Recipe 1")).thenReturn(Collections.singletonList(rec1));
 
-        when(mockRecipeService.findRecipeByName("Test Recipe 1")).thenReturn(Collections.singletonList(rec1));
-
-        mockMvc.perform(get(Routes.API_RECIPE_FIND_BY_NAME.replace("{recipeName}", "Test Recipe 1")))
+        mockMvc.perform(get(Routes.API_RECIPE_FIND_BY_NAME.replace("{name}", "Test Recipe 1")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(Constants.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(1))
                 );
 
-        verify(mockRecipeService, times(1)).findRecipeByName("Test Recipe 1");
+        verify(mockRecipeService, times(1)).findRecipesByName("Test Recipe 1");
         verifyNoMoreInteractions(mockRecipeService);
     }
 
     @Test
     public void testFindAll_GivenRoute_ExpectListOfRecipes() throws Exception {
         Recipe rec1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
-        rec1.id = "Test1";
+        rec1.setId("Test1");
         Recipe rec2 = RecipeTestHelper.getTestRecipe("Test Recipe 2");
-        rec1.id = "Test2";
+        rec1.setId("Test2");
         Recipe rec3 = RecipeTestHelper.getTestRecipe("Test Recipe 3");
-        rec1.id = "Test3";
+        rec1.setId("Test3");
 
         when(mockRecipeService.findAll()).thenReturn(Arrays.asList(rec1, rec2, rec3));
 
@@ -112,7 +128,7 @@ public class TestRecipeRestController {
     @Test
     public void testUpdateRecipe_GivenRecipe_ExpectSuccess() throws Exception {
         Recipe rec1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
-        rec1.id = "Test1";
+        rec1.setId("Test1");
         String json = RecipeTestHelper.recipeToJson(rec1);
 
         when(mockRecipeService.updateRecipe(rec1)).thenReturn(rec1);
@@ -133,7 +149,7 @@ public class TestRecipeRestController {
     @Test
     public void testDeleteRecipe_GivenRecipe_ExpectSuccess() throws Exception {
         Recipe rec1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
-        rec1.id = "Test1";
+        rec1.setId("Test1");
         String json = RecipeTestHelper.recipeToJson(rec1);
 
         ResponseMessage expectedReturn = new ResponseMessage("Recipe deleted: " + rec1.toString());

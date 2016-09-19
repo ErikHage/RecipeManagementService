@@ -9,11 +9,47 @@
     <title>RMS - Find Recipe</title>
 </head>
 <body>
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div th:replace="fragments/nav :: navbar"></div>
 
-        <div th:replace="fragments/nav :: navbar"></div>
+    <div class="row">
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+
+            <div class="text-center">
+
+                <h2>Find  a Recipe</h2>
+                <br/>
+
+            </div>
+
+            <div class="text-center">
+                <form id="recipeInputForm" role="form" method="post" th:object="${recipe}">
+
+                    <div class="form-control">
+                        <label for="recipeNames">Select a recipe</label>
+                        <select id="recipeNames" th:field="*{id}">
+                            <option th:each="recipeName : ${recipeNames}"
+                                th:value="${recipeName.key}" th:text="${recipeName.value}">_</option>
+                        </select>
+                    </div>
+                    <br/>
+                    <div class="text-center">
+                        <button id="findRecipeButton" type="submit" formaction="#" class="btn btn-success"
+                        th:formaction="@{${T(com.tfr.rms.config.Routes).FIND_RECIPE}}">Find</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col-sm-1"></div>
 
     </div>
+</div>
 </body>
 <footer>
     <div th:replace="fragments/footer :: footer"></div>

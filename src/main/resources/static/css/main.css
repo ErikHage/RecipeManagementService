@@ -1,17 +1,41 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 75%;
-    max-width: 750px;
+/*table {*/
+    /*font-family: arial, sans-serif;*/
+    /*border-collapse: collapse;*/
+    /*width: 75%;*/
+    /*max-width: 750px;*/
+    /*margin: auto;*/
+/*}*/
+
+.description-holder {
     margin: auto;
+    width: 100%;
+    min-width: 500px;
 }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+.description-holder textarea {
+    width: 100%;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: lightcyan;
+}
+
+.ingredient-table {
+    font-size: 10px;
+}
+
+.ingredient-table .ingredient {
+    width: 100%;
+}
+
+.ingredient-table .ingredient-number,.ingredient-remove {
+    width: 5%;
+}
+
+.ingredient-table .ingredient-quantity,.ingredient-measure {
+    width: 15%;
+}
+
+.ingredient-table .ingredient-name,.ingredient-notes {
+    width: 30%;
 }

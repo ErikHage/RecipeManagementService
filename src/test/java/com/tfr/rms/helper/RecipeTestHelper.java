@@ -19,20 +19,20 @@ public class RecipeTestHelper {
     public static Recipe getTestRecipe(String name) {
         Recipe recipe = new Recipe();
 
-        recipe.name = name;
-        recipe.description = "This is a test recipe";
-        recipe.prepTime = 15;
-        recipe.cookTime = 60;
+        recipe.setName(name);
+        recipe.setDescription("This is a test recipe");
+        recipe.setPrepTime(15);
+        recipe.setCookTime(60);
 
         Ingredient i1 = new Ingredient();
-        i1.name = "Test Ingredient";
-        i1.amount = 1;
-        i1.measure = "Tbsp";
-        i1.notes = "notes";
+        i1.setName("Test Ingredient");
+        i1.setAmount(1);
+        i1.setMeasure("Tbsp");
+        i1.setNotes("notes");
 
-        recipe.ingredients = Arrays.asList(i1);
+        recipe.setIngredients(Arrays.asList(i1));
 
-        recipe.directions = "directions here";
+        recipe.setDirections("directions here");
 
         return recipe;
     }

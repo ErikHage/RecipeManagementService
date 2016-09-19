@@ -56,6 +56,16 @@ public class TestRecipeRepository {
     }
 
     @Test
+    public void testFindRecipeById() {
+        logger.debug("testFindRecipeById");
+        Recipe test1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
+        test1.setId("testID1");
+        repository.insert(test1);
+        Recipe test1Read = repository.findOne("testID1");
+        assertEquals(test1, test1Read);
+    }
+
+    @Test
     public void testFindOneRecipeByName() {
         logger.debug("testFindOneRecipeByName");
         Recipe test1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
@@ -69,7 +79,7 @@ public class TestRecipeRepository {
         logger.debug("testUpdateRecipe");
         Recipe test1 = RecipeTestHelper.getTestRecipe("Test Recipe 1");
         repository.insert(test1);
-        test1.name = "Test Recipe Updated";
+        test1.setName("Test Recipe Updated");
         repository.save(test1);
         List<Recipe> test1Read = repository.findByName("Test Recipe Updated");
         assertEquals(test1, test1Read.get(0));
