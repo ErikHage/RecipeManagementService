@@ -46,7 +46,7 @@ public class RecipeController {
     }
 
     @RequestMapping(value = Routes.INPUT_ADD_ROW,
-                    method = RequestMethod.GET)
+                    method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public String addIngredientToRecipe(@ModelAttribute("recipe") Recipe recipe, Model model) {
         logger.debug("hitting endpoint: " + Routes.INPUT_ADD_ROW);

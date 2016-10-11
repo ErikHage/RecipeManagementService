@@ -8,12 +8,14 @@
 
 .description-holder {
     margin: auto;
+    height: inherit;
     width: 100%;
     min-width: 500px;
 }
 
 .description-holder textarea {
-    width: 100%;
+    width: inherit;
+    height: 100%;
 }
 
 tr:nth-child(even) {
