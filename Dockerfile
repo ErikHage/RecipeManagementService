@@ -19,4 +19,4 @@ ADD /target/rms-0.0.1-SNAPSHOT.jar rms_app.jar
 RUN sh -c 'touch /rms_app.jar'
 
 EXPOSE 3002
-ENTRYPOINT ["java","-jar","/rms_app.jar"]
+ENTRYPOINT ["java","-jar","rms_app.jar"]
