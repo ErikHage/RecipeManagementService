@@ -16,6 +16,10 @@ WORKDIR /usr/src/app
 
 ADD /target/rms-0.0.1-SNAPSHOT.jar rms_app.jar
 
+#Install text editor nano
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "nano"]
+
 RUN sh -c 'touch /rms_app.jar'
 
 EXPOSE 3002
