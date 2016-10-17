@@ -32,32 +32,34 @@
                                 <input type="hidden" id="id" th:field="*{id}"/>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name">Recipe Name</label>
-                                <input type="text" id="name" th:field="*{name}"/>
+                            <div class="well">
+                                <div class="form-group">
+                                    <label for="name">Recipe Name</label>
+                                    <input type="text" id="name" th:field="*{name}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Recipe Description</label>
+                                    <input type="text" id="description" th:field="*{description}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="prepTime">Prep Time (min)</label>
+                                    <input type="number" id="prepTime" th:field="*{prepTime}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cookTime">Cook Time (min)</label>
+                                    <input type="number" id="cookTime" th:field="*{cookTime}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="yield">Yield (servings)</label>
+                                    <input type="number" id="yield" th:field="*{yield}"/>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="description">Recipe Description</label>
-                                <input type="text" id="description" th:field="*{description}"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="prepTime">Prep Time (min)</label>
-                                <input type="number" id="prepTime" th:field="*{prepTime}"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="cookTime">Cook Time (min)</label>
-                                <input type="number" id="cookTime" th:field="*{cookTime}"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="yield">Yield (servings)</label>
-                                <input type="number" id="yield" th:field="*{yield}"/>
-                            </div>
-
-                            <div class="form-group">
+                            <div class="well form-group">
                                 <label for="ingredients">Ingredients</label>
                                 <button id="addIngredientButton" type="submit" class="btn btn-default btn-xs" formmethod="post" formaction="#" th:formaction="@{${T(com.tfr.rms.config.Routes).INPUT_ADD_ROW}}">+</button>
                                 <div id="ingredients">
@@ -88,9 +90,9 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-6">
+                        <div class="well col-sm-6">
                             <div class="form-group description-holder">
-                                <label for="directions">Directions</label>
+                                <label for="directions">Directions</label><br/>
                                 <textarea rows="20" type="text" id="directions" th:field="*{directions}"></textarea>
                             </div>
                         </div>

@@ -124,7 +124,7 @@ public class RecipeController {
         setCommonAttributes(model);
 
         Recipe recipeOut = recipeService.findRecipeById(recipe.getId());
-        model.addAttribute("recipe", recipeOut);
+        model.addAttribute("recipe", modifyRecipeForDisplay(recipeOut));
 
         return Views.VIEW_RECIPE;
     }
@@ -198,5 +198,10 @@ public class RecipeController {
         } else {
             logger.warn("Invalid index to remove ingredient");
         }
+    }
+
+    private Recipe modifyRecipeForDisplay(Recipe recipe) {
+        recipe.setDirections(recipe.getDirections().replace("\n","<br/>"));
+        return recipe;
     }
 }
