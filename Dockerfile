@@ -23,4 +23,3 @@ RUN ["apt-get", "install", "-y", "nano"]
 RUN sh -c 'touch /rms_app.jar'
 
 EXPOSE 3002
-ENTRYPOINT ["java","-jar","rms_app.jar"]
